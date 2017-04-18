@@ -13,7 +13,10 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('mob-board', require('./components/MobBoard.vue'));
+Vue.component('front-panel', require('./components/FrontPanel.vue'));
+Vue.component('admin-panel', require('./components/AdminPanel.vue'));
+Vue.component('count-down', require('./components/CountDown.vue'));
 
 const app = new Vue({
     el: '#app'
