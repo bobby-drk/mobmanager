@@ -2,16 +2,11 @@
     <div>
         <div class="columns">
             <div class="column is-one-quarter">
-                <participants
-                    :participants="participants">
-
-                </participants>
+                <participants></participants>
             </div>
 
             <div class="column">
-                <count-down
-                    :sessionLength="sessionLength">
-                </count-down>
+                <count-down></count-down>
 
                 <div> tasks</div>
             </div>
@@ -21,26 +16,19 @@
             </div>
         </div>
         <div>
-            <i class="fa fa-info-circle" @click="displayAdmin"></i>
+            <i class="fa fa-info-circle" @click="adminOn"></i>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        props: [
-            'sessionLength',
-            'participants'
-        ],
-        data () {
-            return {
 
-            };
-        },
-        methods: {
-            displayAdmin () {
-                this.$emit('openAdmin')
-            }
-        },
+    import { mapMutations } from 'vuex'
+
+    export default {
+        methods: mapMutations({
+            adminOn : 'setAdminDisplayOn',
+        }),
+
     }
 </script>

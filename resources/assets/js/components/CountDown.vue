@@ -29,13 +29,13 @@
 </template>
 
 <script>
+
+    import { mapState } from 'vuex'
+
     export default {
-        props : {
-            sessionLength: {},
-        },
+
         data () {
             return {
-                // timerOn: false,
                 paused: true,
                 duration: {},
                 intervalObj:{}
@@ -43,8 +43,11 @@
         },
         computed: {
             remaining() {
-                return moment(this.duration.asMilliseconds()).format('mm:ss');
-            }
+                return moment(this.duration.asMilliseconds()).format('mm:ss')
+            },
+            ...mapState({
+                sessionLength: state => state.sessionLength,
+            }),
         },
         methods: {
             startTimer() {
@@ -67,8 +70,6 @@
                     }, interval);
 
                 }
-
-
             },
             resetTimer () {
                 clearInterval(this.intervalObj)
