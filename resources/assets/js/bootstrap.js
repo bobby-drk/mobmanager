@@ -3,6 +3,10 @@ window._ = require('lodash');
 require('bulma');
 window.Vue = require('vue');
 
+import Vuex from 'vuex';
+Vue.use(Vuex);
+
+
 window.axios = require('axios');
 window.moment = require('moment');
 moment().format();
