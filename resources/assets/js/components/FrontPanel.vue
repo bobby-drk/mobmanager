@@ -1,14 +1,16 @@
 <template>
-    <div >
+    <div>
         <div class="columns">
             <div class="column is-one-quarter">
-                participants
+                <participants
+                    :participants="participants">
+
+                </participants>
             </div>
 
             <div class="column">
                 <count-down
                     :sessionLength="sessionLength">
-
                 </count-down>
 
                 <div> tasks</div>
@@ -26,7 +28,10 @@
 
 <script>
     export default {
-        props: ['sessionLength'],
+        props: [
+            'sessionLength',
+            'participants'
+        ],
         data () {
             return {
 

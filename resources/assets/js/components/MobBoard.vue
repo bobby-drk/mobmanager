@@ -9,12 +9,9 @@
             v-else
             :showAdmin="showAdmin"
             :sessionLength="sessionLength"
+            :participants="participants"
             v-on:openAdmin="setAdminTrue">
-            </front-panel>
-
-
-
-
+        </front-panel>
     </div>
 </template>
 
