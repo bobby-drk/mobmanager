@@ -1,6 +1,7 @@
 
 window._ = require('lodash');
-require('bulma');
+require('bootstrap-sass');
+
 window.Vue = require('vue');
 
 import Vuex from 'vuex';
