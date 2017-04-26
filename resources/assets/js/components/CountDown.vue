@@ -2,28 +2,27 @@
     <div>
         <div >{{ remaining }}</div>
 
-        <div class="field has-addons">
-            <p class="control" v-if="paused">
-                <a class="button is-small is-primary" @click="startTimer">
-                    <span class="icon is-small">
-                        <i class="fa fa-play"></i>
-                    </span>
-                </a>
-            </p>
-            <p class="control" v-else>
-                <a class="button is-small is-primary" @click="paused = !paused" >
-                    <span class="icon is-small">
-                        <i class="fa fa-pause"></i>
-                    </span>
-                </a>
-            </p>
-            <p class="control">
-                <a class="button is-small is-danger" @click="resetTimer">
-                    <span class="icon is-small">
-                        <i class="fa fa-stop"></i>
-                    </span>
-                </a>
-            </p>
+        <div class="btn-group" role="group" aria-label="...">
+            <button
+                 type="button"
+                 class="btn btn-default"
+                 @click="startTimer"
+                 v-if="paused">
+                    <i class="fa fa-play"></i>
+            </button>
+            <button
+                type="button"
+                class="btn btn-default"
+                @click="paused = !paused"
+                v-else>
+                    <i class="fa fa-pause"></i>
+            </button>
+            <button
+                type="button"
+                class="btn btn-default"
+                @click="resetTimer">
+                    <i class="fa fa-stop"></i>
+            </button>
         </div>
     </div>
 </template>
@@ -65,6 +64,7 @@
                             } else {
                                 console.log("Time is up");
                                 self.paused = true;
+                                self.nextParticipant()
                             }
                         }
                     }, interval);
@@ -79,6 +79,8 @@
             },
             setDuration () {
                 this.duration = moment.duration(this.sessionLength * 60000, 'milliseconds')
+            },
+            nextParticipant () {
             }
         },
         created() {

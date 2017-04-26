@@ -1,22 +1,33 @@
 <template>
     <div>
-        <div class="columns">
-            <div class="column is-one-quarter">
+        <div class='row'>
+            <div class="col-md-3">
                 <participants></participants>
             </div>
 
-            <div class="column">
-                <count-down></count-down>
+            <div class="col-md-6">
+                <div class='row'>
+                    <div class="col-md-12">
+                        <count-down></count-down>
+                    </div>
+                </div>
 
-                <div> tasks</div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div> tasks</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="column is-one-quarter">
+            <div class="col-md-3">
                 notes
             </div>
         </div>
-        <div>
-            <i class="fa fa-info-circle" @click="adminOn"></i>
+
+        <div class='row'>
+            <div class="col-md-12">
+                <i class="fa fa-info-circle" @click="adminOn"></i>
+            </div>
         </div>
     </div>
 </template>
