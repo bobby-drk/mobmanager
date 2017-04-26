@@ -1,5 +1,5 @@
 <template>
-    <div class='box'>
+    <div>
         <admin-panel v-if="showAdmin"></admin-panel>
         <front-panel v-else></front-panel>
     </div>

@@ -1,11 +1,14 @@
-
 window._ = require('lodash');
-require('bulma');
+
+window.$ = window.jQuery = require('jquery');
+
+
+require('bootstrap-sass');
+
 window.Vue = require('vue');
 
 import Vuex from 'vuex';
 Vue.use(Vuex);
-
 
 window.axios = require('axios');
 window.moment = require('moment');

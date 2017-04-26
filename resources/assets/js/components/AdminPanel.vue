@@ -1,11 +1,11 @@
 <template>
-    <section class="section">
+    <div>
         admin
 
-        <p class="control">
+        <p >
             <button class="button is-primary" @click="adminOff">Close</button>
         </p>
-    </section>
+    </div>
 </template>
 
 <script>

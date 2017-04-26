@@ -14,12 +14,12 @@ export default new Vuex.Store({
             {
                 name: 'Charlie',
                 contributor: true,
-                active: true
+                active: false
             },
             {
                 name: 'Bruce Wayne',
                 contributor: true,
-                active: false
+                active: true
             },
             {
                 name: 'Clark Kent',
@@ -31,6 +31,16 @@ export default new Vuex.Store({
         tasks: {},
         notes: {},
     },
+/*
+
+Add a computed value of the active participant
+
+Then the time can get that element and advance to the next
+
+
+
+ */
+
     actions,
     getters,
     mutations
