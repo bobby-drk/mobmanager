@@ -31,16 +31,6 @@ export default new Vuex.Store({
         tasks: {},
         notes: {},
     },
-/*
-
-Add a computed value of the active participant
-
-Then the time can get that element and advance to the next
-
-
-
- */
-
     actions,
     getters,
     mutations

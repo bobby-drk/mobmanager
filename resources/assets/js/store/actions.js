@@ -1,16 +1,24 @@
-export const advanceParticipant = ({ state, commit }) => {
+export const advanceParticipant = ({ state, commit, getters }) => {
+    for(let i = 0; i < getters.contributors.length; i++) {
+        console.log("advanceParticipant:i", i)
 
-    for(let i = 0; i < state.participants.length; i++) {
-
-        if(state.participants[i].active && typeof state.participants[i+1] !== "undefined") {
-            commit('setParticipantActive', state.participants[i])
-            commit('setParticipantActive', state.participants[i+1])
+        if(getters.contributors[i].active && typeof getters.contributors[i+1] !== "undefined") {
+            commit('setParticipantActive', getters.contributors[i])
+            commit('setParticipantActive', getters.contributors[i+1])
             break;
-        } else if (state.participants[i].active && typeof state.participants[i+1] === "undefined") {
-            commit('setParticipantActive', state.participants[i])
-            commit('setParticipantActive', state.participants[0])
+        } else if (getters.contributors[i].active && typeof getters.contributors[i+1] === "undefined") {
+            commit('setParticipantActive', getters.contributors[i])
+            commit('setParticipantActive', getters.contributors[0])
             break;
         }
 
     }
+}
+
+
+export const removeParticipant = ({ state, dispatch }, index) => {
+    if(state.participants[index].active) {
+        dispatch("advanceParticipant")
+    }
+    state.participants.splice(index, 1)
 }
