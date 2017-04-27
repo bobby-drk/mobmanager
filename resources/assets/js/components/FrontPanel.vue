@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <div class='row'>
                     <div class="col-md-12">
-                        <count-down></count-down>
+                        <mob-timer></mob-timer>
                     </div>
                 </div>
 

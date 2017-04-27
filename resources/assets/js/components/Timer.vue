@@ -1,29 +1,36 @@
 <template>
-    <div>
-        <div >{{ remaining }}</div>
-
-        <div class="btn-group" role="group" aria-label="...">
-            <button
-                 type="button"
-                 class="btn btn-default"
-                 @click="startTimer"
-                 v-if="paused">
-                    <i class="fa fa-play"></i>
-            </button>
-            <button
-                type="button"
-                class="btn btn-default"
-                @click="paused = !paused"
-                v-else>
-                    <i class="fa fa-pause"></i>
-            </button>
-            <button
-                type="button"
-                class="btn btn-default"
-                @click="resetTimer">
-                    <i class="fa fa-stop"></i>
-            </button>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Timer</h3>
         </div>
+
+        <div class="panel-body">
+            {{ remaining }}
+
+            <div class="btn-group" role="group" aria-label="...">
+                <button
+                     type="button"
+                     class="btn btn-default"
+                     @click="startTimer"
+                     v-if="paused">
+                        <i class="fa fa-play"></i>
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    @click="paused = !paused"
+                    v-else>
+                        <i class="fa fa-pause"></i>
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    @click="resetTimer">
+                        <i class="fa fa-stop"></i>
+                </button>
+            </div>
+        </div>
+
     </div>
 </template>
 
