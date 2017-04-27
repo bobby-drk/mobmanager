@@ -1,0 +1,17 @@
+.participants-list {
+
+    .button-bar {
+        -webkit-appearance: none;
+        appearance: none;
+        background: none;
+        border: none;
+        display: none;
+    }
+
+    .button-bar:after {
+    }
+
+    &:hover .button-bar {
+        display: block;
+    }
+}
