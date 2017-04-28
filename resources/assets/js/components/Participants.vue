@@ -2,7 +2,10 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Participants</h3>
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                Participants
+            </h3>
         </div>
 
             <ul class="list-group participants-list">

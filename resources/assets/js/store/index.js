@@ -29,7 +29,7 @@ export default new Vuex.Store({
         ],
         sessionLength: 1,
         tasks: {},
-        notes: {},
+        notes: [],
     },
     actions,
     getters,

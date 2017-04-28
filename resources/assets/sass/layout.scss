@@ -8,10 +8,60 @@
         display: none;
     }
 
-    .button-bar:after {
-    }
-
     &:hover .button-bar {
         display: block;
+    }
+}
+
+
+.notesapp
+{
+    .edit {
+        outline: none;
+        border-color:rgba(0,0,0,0.1);;
+        padding: 5px;
+        position: relative;
+        width: 100%;
+        background: rgba(255,255,255,0.5);
+    }
+
+    .note-list {
+
+        .alert {
+            overflow:hidden;
+
+            .button-bar {
+                -webkit-appearance: none;
+                appearance: none;
+                background: none;
+                border: none;
+                visibility: hidden;
+                margin-top:5px;
+                margin-right:-5px;
+                margin-bottom:-10px;
+                margin-left:-5px;
+            }
+
+            &:hover .button-bar {
+                visibility: visible;
+            }
+
+
+            &.editing {
+                padding: 15px;
+            }
+
+            &.editing .edit {
+                display: block;
+            }
+
+            &.editing .view {
+                display: none;
+            }
+
+            .edit {
+                display: none;
+            }
+        }
     }
 }
