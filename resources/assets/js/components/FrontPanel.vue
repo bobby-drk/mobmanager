@@ -20,7 +20,7 @@
             </div>
 
             <div class="col-md-3">
-                notes
+                <mob-notes></mob-notes>
             </div>
         </div>
 

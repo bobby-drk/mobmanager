@@ -1,7 +1,10 @@
 <template>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Timer</h3>
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                Timer
+            </h3>
         </div>
 
         <div class="panel-body">
