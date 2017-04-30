@@ -4,9 +4,11 @@
 
 // Variables
 @import "variables";
+@import "./flatly/_variables";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "./flatly/_bootswatch.css";
 
 
 @import "main";
