@@ -1,0 +1,42 @@
+.custom-checkbox {
+
+    display:inline-block;
+    padding:2px;
+    vertical-align: middle;
+
+    &.lg        { font-size:175%;   }
+    &.default   { font-size:125%;   }
+    &.sm        { font-size:100%;   }
+    &.xs        { font-size:75%;    }
+
+    &.primary   { color:$brand-primary; }
+    &.success   { color:$brand-success; }
+    &.info      { color:$brand-info;    }
+    &.warning   { color:$brand-warning; }
+    &.danger    { color:$brand-danger;  }
+}
+
+.custom-btn-rank {
+
+    postion: relative;
+
+    .btn, .btn:active, .btn:focus {
+        outline:0 !important;
+    }
+
+    .selected-button {
+        border-top-left-radius: $border-radius-small !important;
+        border-bottom-left-radius: $border-radius-small !important;
+    }
+
+    .vertical-holder {
+        position:absolute !important;
+        right:0px;
+        z-index:1000;
+
+        .invisable {
+            visibility: hidden;
+        }
+    }
+
+}

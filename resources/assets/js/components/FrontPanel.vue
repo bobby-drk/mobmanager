@@ -1,25 +1,16 @@
 <template>
     <div>
         <div class='row'>
-            <div class="col-md-3">
+            <div class="col-md-2">
+                <mob-timer></mob-timer>
                 <participants></participants>
             </div>
 
-            <div class="col-md-6">
-                <div class='row'>
-                    <div class="col-md-12">
-                        <mob-timer></mob-timer>
-                    </div>
-                </div>
-
-                <div class='row'>
-                    <div class="col-md-12">
-                        <div> tasks</div>
-                    </div>
-                </div>
+            <div class="col-md-5">
+                <mob-tasks> tasks</mob-tasks>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <mob-notes></mob-notes>
             </div>
         </div>

@@ -1,24 +1,8 @@
-.participants-list {
-
-    .button-bar {
-        -webkit-appearance: none;
-        appearance: none;
-        background: none;
-        border: none;
-        display: none;
-    }
-
-    &:hover .button-bar {
-        display: block;
-    }
-}
-
-
 .notesapp
 {
     .edit {
         outline: none;
-        border-color:rgba(0,0,0,0.1);;
+        border-color:rgba(0,0,0,0.1);
         padding: 5px;
         position: relative;
         width: 100%;
