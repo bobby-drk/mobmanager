@@ -29,7 +29,7 @@
                     @blur="doneEdit(note, index)"
                     @keyup.enter="doneEdit(note, index)"
                     @keyup.esc="cancelEdit(note)"
-                    :style="'height:' + editBoxHeight +'px'">
+                    :style="'height:' + editBoxHeight | minHeight +'px'">
                 </textarea>
 
                 <div class="button-bar">
@@ -87,6 +87,11 @@
         computed: mapState({
             notes: state => state.notes,
         }),
+        filters: {
+            minHeight: function (n) {
+                return n < 100 ? 100 : n
+            }
+        },
         methods: {
             ...mapMutations([
                 'noteAdd',
@@ -99,7 +104,7 @@
             },
             addNote () {
                 this.noteAdd ({
-                    body: '',
+                    body: "",
                     severity: 2
                 })
 
