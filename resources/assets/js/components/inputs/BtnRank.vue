@@ -65,7 +65,6 @@
                         className: 'btn-danger',
                         selected: false
                     }
-
                 ]
             }
         },
@@ -91,5 +90,11 @@
                 this.$emit('input', btn.value)
             },
         },
+        mounted() {
+            if(this.value >= 1 && this.value <= 4) {
+                this.buttons.forEach((button) => button.selected = false)
+                this.buttons[(this.value -1)].selected = true
+            }
+        }
     }
 </script>

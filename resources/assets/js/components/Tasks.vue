@@ -10,6 +10,7 @@
 
         <div class="panel-body" >
 
+            <div ><small>{{ remaining | pluralize }} remaining: {{ remaining }}</small></div>
             <ul class="task-list">
                 <li v-for="(task, index) in filteredTasks"
                     class="list-group-item"
@@ -64,10 +65,7 @@
                  </li>
             </ul>
 
-            <div ><small>{{ remaining | pluralize }} remaining: {{ remaining }}</small></div>
-
         </div>
-
 
         <div class="panel-footer" v-show="tasks.length" v-cloak>
 
@@ -132,9 +130,9 @@
         },
         watch: {
             tasks: {
-                handler: function (e) {
-                    this.$store.commit('tasksSync', this.tasks)
-                },
+                handler: _.debounce(function (e) {
+                    this.tasksSync(e)
+                }, 500),
                 deep: true
             }
         },
@@ -168,10 +166,10 @@
         },
         methods: {
             ...mapMutations([
-                'tasksSync',
-                'taskDelete',
                 'taskAdd',
+                'taskDelete',
                 'tasksRemoveCompleted',
+                'tasksSync',
             ]),
             addTask () {
                 this.addingTask = true;
