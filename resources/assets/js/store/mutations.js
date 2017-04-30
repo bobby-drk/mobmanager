@@ -6,9 +6,16 @@ export const noteDelete = (state, index) => state.notes.splice(index, 1)
 export const notesSync = (state, notes) => state.notes = notes
 
 export const taskAdd = (state, newTask) =>  state.tasks.unshift(newTask)
+export const taskCompleted = (state, task) => task.completed = !task.completed
 export const taskDelete = (state, index) => state.tasks.splice(index, 1)
+
 export const tasksRemoveCompleted = (state) => state.tasks = state.tasks.filter(task => !task.completed)
 export const tasksSync = (state, tasks) => state.tasks = tasks
+
+
+export const participantAdd = (state, newParticipant) =>  state.participants.unshift(newParticipant)
+export const participantsSync = (state, participants) => state.participants = participants
+export const participantsSetContributor = (state, participant) => participant.contributor = !participant.contributor
 
 export const setParticipantActive = (state, participant) => {
 
@@ -19,4 +26,3 @@ export const setParticipantActive = (state, participant) => {
     participant.contributor = true
     participant.active = !participant.active
 }
-export const setParticipantsContributor = (state, participant) => participant.contributor = !participant.contributor

@@ -1,27 +1,33 @@
 <template>
 
-    <div class="panel panel-default">
+    <div class="panel panel-default participantapp">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-user hidden-md" ></span>
                 Participants
+                <i class="fa fa-plus pull-right hidden-md" @click="addParticipant"></i>
             </h3>
         </div>
 
-            <ul class="list-group participants-list">
-                <li
-                    class="list-group-item"
-                    :class="{ 'active': participant.active }"
-                    v-for="(participant, index) in participants">
+        <ul class="list-group participants-list">
+            <li
+                v-for="(participant, index) in participants"
+                class="list-group-item"
+                :class="{
+                    active: participant.active,
+                    editing: participant == editedParticipant
+                }"
+                @dblclick="editParticipant(participant)">
 
-                    <input
-                        type="checkbox"
-                        :checked="participant.contributor"
-                        @change="setParticipantsContributor(participant)">
+                <div class="view">
 
-                    {{ participant.name }}
+                    <input-checkbox
+                        v-model="participant.contributor">
+                    </input-checkbox>
 
-                    <div class="btn-group pull-right button-bar" role="group" aria-label="...">
+                    <span @click="participantsSetContributor(participant)">{{ participant.name }}</span>
+
+                    <div class="btn-group pull-right button-bar" role="group" >
                         <button
                              type="button"
                              class="btn btn-default btn-xs"
@@ -30,15 +36,34 @@
                                 <i class="fa fa-fire"></i>
                         </button>
                         <button
+                             type="button"
+                             class="btn btn-default btn-xs"
+                             @click="editParticipant(participant)">
+                                <i class="fa fa-pencil"></i>
+                        </button>
+                        <button
                             type="button"
                             class="btn btn-default btn-xs btn-danger"
-                            @click="removeParticipant(index)">
+                            @click="participantDelete(index)">
                                 <i class="fa fa-close"></i>
                         </button>
                     </div>
+                </div>
 
-                </li>
-            </ul>
+                <input class="edit" type="text"
+                    v-model="participant.name"
+                    v-participant-focus="participant == editedParticipant"
+                    @blur="doneEdit(participant, index)"
+                    @keyup.enter="doneEdit(participant, index)"
+                    @keyup.esc="cancelEdit(participant)">
+
+            </li>
+            <li class='visible-md-block' @click="addParticipant">
+                <div class='emergency-add'>
+                    <small><i class="fa fa-plus" ></i> Add Participants</small>
+                </div>
+            </li>
+        </ul>
     </div>
 
 </template>
@@ -47,17 +72,68 @@
     import { mapState, mapMutations, mapActions } from 'vuex'
 
     export default {
+        data () {
+            return {
+                editedParticipant: null,
+            }
+        },
+        watch: {
+            participants: {
+                handler: _.debounce(function (e) {
+                    this.participantsSync(e)
+                }, 500),
+                deep: true
+            }
+        },
         computed: mapState({
                 participants: state => state.participants,
         }),
         methods: {
             ...mapMutations([
-                'setParticipantsContributor',
+                'participantAdd',
+                'participantsSync',
+                'participantsSetContributor',
                 'setParticipantActive',
             ]),
             ...mapActions([
-                'removeParticipant'
-            ])
-        }
+                'participantDelete'
+            ]),
+            addParticipant () {
+                this.participantAdd({
+                    name: '',
+                    contributor: true,
+                    active: false
+                })
+
+                this.$nextTick(() => this.editParticipant(this.participants[0]))
+            },
+            editParticipant (participant) {
+                this.beforeEditCache = participant.name
+                this.editedParticipant = participant
+            },
+            doneEdit (participant, index) {
+
+                if (!this.editedParticipant) {
+                    return
+                }
+                this.editedParticipant = null
+                participant.name = participant.name.trim()
+
+                if (!participant.name) {
+                    this.participantDelete(index)
+                }
+            },
+            cancelEdit (participant) {
+                this.editedParticipant = null
+                participant.name = this.beforeEditCache
+            },
+        },
+        directives: {
+            'participant-focus'  (el, value) {
+                if (value) {
+                    el.focus()
+                }
+            }
+        },
     }
 </script>
