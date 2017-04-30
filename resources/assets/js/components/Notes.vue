@@ -67,7 +67,7 @@
         data () {
             return {
                 editedNote: null,
-                editBoxHeight: 50,
+                editBoxHeight: 100,
                 severityClasses: [
                     'alert-success',
                     'alert-info',

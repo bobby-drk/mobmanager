@@ -28,6 +28,11 @@
     import { mapMutations } from 'vuex'
 
     export default {
+        data () {
+            return {
+                test: false,
+            }
+        },
         methods: mapMutations({
             adminOn : 'setAdminDisplayOn',
         }),

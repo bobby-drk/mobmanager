@@ -15,7 +15,7 @@ export const advanceParticipant = ({ state, commit, getters }) => {
     }
 }
 
-export const removeParticipant = ({ state, dispatch }, index) => {
+export const participantDelete = ({ state, dispatch }, index) => {
     if(state.participants[index].active) {
         dispatch("advanceParticipant")
     }

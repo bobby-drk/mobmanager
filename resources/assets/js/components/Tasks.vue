@@ -12,7 +12,8 @@
 
             <div ><small>{{ remaining | pluralize }} remaining: {{ remaining }}</small></div>
             <ul class="task-list">
-                <li v-for="(task, index) in filteredTasks"
+                <li
+                    v-for="(task, index) in filteredTasks"
                     class="list-group-item"
                     :class="[
                         severityClass(task.severity),
@@ -31,7 +32,7 @@
                             v-model='task.completed'>
                         </input-checkbox>
 
-                        <label >{{ task.title }}</label>
+                        <label @click="taskCompleted(task)">{{ task.title }}</label>
 
                         <div class="btn-group pull-right button-bar" role="group">
 
@@ -51,7 +52,6 @@
                                 <i class="fa fa-close"></i>
                             </button>
                         </div>
-
 
                     </div>
 
@@ -168,6 +168,7 @@
             ...mapMutations([
                 'taskAdd',
                 'taskDelete',
+                'taskCompleted',
                 'tasksRemoveCompleted',
                 'tasksSync',
             ]),
