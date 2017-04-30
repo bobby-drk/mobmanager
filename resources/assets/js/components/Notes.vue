@@ -12,7 +12,10 @@
 
             <div v-for="(note, index) in notes"
                 class="alert"
-                :class="[note.severity, {'editing': note == editedNote }]"
+                :class="[
+                    severityClass(note.severity),
+                    {'editing': note == editedNote }
+                ]"
                 @dblclick="editNote(note, index)"
                 role="alert"
                 ref="myNotes">
@@ -30,40 +33,13 @@
                 </textarea>
 
                 <div class="button-bar">
-                    <div class="btn-group pull-left button-bar" role="group" aria-label="...">
-                        <button
-                             type="button"
-                             @click="note.severity = 'alert-success'"
-                             class="btn btn-xs btn-success">
-                             <i class="fa fa-exclamation" aria-hidden="true"></i>
-                        </button>
-                        <button
-                             type="button"
-                             @click="note.severity = 'alert-info'"
-                             class="btn btn-xs btn-info">
-                             <i class="fa fa-exclamation" aria-hidden="true"></i>
-                             <i class="fa fa-exclamation" aria-hidden="true"></i>
-                        </button>
-                        <button
-                             type="button"
-                             @click="note.severity = 'alert-warning'"
-                             class="btn btn-xs btn-warning">
-                                <i class="fa fa-exclamation" aria-hidden="true"></i>
-                                <i class="fa fa-exclamation" aria-hidden="true"></i>
-                                <i class="fa fa-exclamation" aria-hidden="true"></i>
-                        </button>
-                        <button
-                             type="button"
-                             @click="note.severity = 'alert-danger'"
-                             class="btn btn-xs btn-danger">
-                                <i class="fa fa-exclamation" aria-hidden="true"></i>
-                                <i class="fa fa-exclamation" aria-hidden="true"></i>
-                                <i class="fa fa-exclamation" aria-hidden="true"></i>
-                                <i class="fa fa-exclamation" aria-hidden="true"></i>
-                        </button>
-                    </div>
 
-                    <div class="btn-group pull-right button-bar" role="group" aria-label="...">
+                    <div class="btn-group pull-right button-bar" role="group">
+
+                        <input-btn-rank
+                            v-model="note.severity">
+                        </input-btn-rank>
+
                         <button
                              type="button"
                              class="btn btn-default btn-xs"
@@ -73,11 +49,12 @@
                         <button
                             type="button"
                             class="btn btn-xs btn-danger"
-                            @click="deleteNote(index)">
+                            @click="noteDelete(index)">
                             <i class="fa fa-close"></i>
                         </button>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -90,7 +67,21 @@
         data () {
             return {
                 editedNote: null,
-                editBoxHeight: 0,
+                editBoxHeight: 50,
+                severityClasses: [
+                    'alert-success',
+                    'alert-info',
+                    'alert-warning',
+                    'alert-danger'
+                ],
+            }
+        },
+        watch: {
+            notes: {
+                handler: _.debounce(function (e) {
+                    this.notesSync(e)
+                }, 500),
+                deep: true
             }
         },
         computed: mapState({
@@ -98,12 +89,18 @@
         }),
         methods: {
             ...mapMutations([
-                'deleteNote',
+                'noteAdd',
+                'noteDelete',
+                'notesSync'
             ]),
+            tmpFunc () {
+                console.log("CALLED");
+
+            },
             addNote () {
-                this.$store.commit('addNote', {
+                this.noteAdd ({
                     body: '',
-                    severity: "alert-info"
+                    severity: 2
                 })
 
                 this.$nextTick(function () {
@@ -127,12 +124,15 @@
                 this.editedNote = null
                 note.body = note.body.trim()
                 if (!note.body) {
-                    this.$store.commit('deleteNote', index)
+                    this.noteDelete(index)
                 }
             },
             cancelEdit (note) {
                 this.editedNote = null
                 note.body = this.beforeEditCache
+            },
+            severityClass(index) {
+                return this.severityClasses[(index -1)]
             },
         },
         directives: {
