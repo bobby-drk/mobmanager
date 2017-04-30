@@ -28,7 +28,18 @@ export default new Vuex.Store({
             }
         ],
         sessionLength: 1,
-        tasks: {},
+        tasks: [
+            {
+                title: 'Get a hair cut',
+                completed: true,
+                severity: 2
+            },
+            {
+                title: 'Get a real job',
+                completed: false,
+                severity: 4
+            }
+        ],
         notes: [],
     },
     actions,
