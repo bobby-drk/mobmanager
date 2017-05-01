@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-default tasksapp">
+    <div class="panel panel-primary tasksapp">
         <div class="panel-heading">
             <h3 class="panel-title">
                 <span class="glyphicon glyphicon-tasks"></span>

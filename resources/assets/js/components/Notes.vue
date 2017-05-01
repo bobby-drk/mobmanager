@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-default notesapp">
+    <div class="panel panel-primary notesapp">
         <div class="panel-heading">
             <h3 class="panel-title">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>

@@ -3,16 +3,19 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Variables
-@import "variables";
 @import "./flatly/_variables";
+@import "variables";
+
+
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "./flatly/_bootswatch.css";
 
 
-@import "main";
+
 @import "custom-inputs";
-@import "participants";
+@import "main";
 @import "notes";
+@import "participants";
 @import "tasks";
