@@ -1,0 +1,25 @@
+html, body {
+    background: $bg-color;
+}
+
+.bottom-buffer {
+    margin-bottom:10px;
+}
+
+
+.mob-board {
+    margin:20px;
+    padding:10px;
+    border-radius: $border-radius-base;
+    background-color:#EFEFEF;
+
+    .btn-admin {
+        cursor:pointer;
+        color:$gray;
+    }
+
+    .btn-admin:hover {
+        color:$gray-dark;
+    }
+}
+

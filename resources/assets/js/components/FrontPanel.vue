@@ -1,5 +1,13 @@
 <template>
     <div>
+        <div class='row bottom-buffer '>
+            <div class="col-md-11">
+                Mob Boss
+            </div>
+            <div class="col-md-1">
+                <span class="glyphicon glyphicon-cog pull-right btn-admin" @click="adminOn"></span>
+            </div>
+        </div>
         <div class='row'>
             <div class="col-md-2">
                 <mob-timer></mob-timer>
@@ -14,12 +22,6 @@
                 <mob-notes></mob-notes>
             </div>
         </div>
-
-        <div class='row'>
-            <div class="col-md-12">
-                <i class="fa fa-info-circle" @click="adminOn"></i>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -28,11 +30,6 @@
     import { mapMutations } from 'vuex'
 
     export default {
-        data () {
-            return {
-                test: false,
-            }
-        },
         methods: mapMutations({
             adminOn : 'setAdminDisplayOn',
         }),

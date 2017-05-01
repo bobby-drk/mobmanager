@@ -1,11 +1,10 @@
 <template>
 
-    <div class="panel panel-default participantapp">
+    <div class="panel panel-primary participantapp">
         <div class="panel-heading">
             <h3 class="panel-title">
                 <span class="glyphicon glyphicon-user hidden-md" ></span>
-                Participants
-                <i class="fa fa-plus pull-right hidden-md" @click="addParticipant"></i>
+                Crew
             </h3>
         </div>
 
@@ -58,12 +57,10 @@
                     @keyup.esc="cancelEdit(participant)">
 
             </li>
-            <li class='visible-md-block' @click="addParticipant">
-                <div class='emergency-add'>
-                    <small><i class="fa fa-plus" ></i> Add Participants</small>
-                </div>
-            </li>
         </ul>
+        <div class="panel-footer" @click="addParticipant">
+            <small><i class="fa fa-plus" ></i> Add to Crew</small>
+        </div>
     </div>
 
 </template>
