@@ -27,9 +27,15 @@ export default new Vuex.Store({
                 active: false
             }
         ],
-        sessionLength: 1,
         tasks: [],
         notes: [],
+        timer: {
+            sessionLength: .05,
+            paused: true,
+            duration: {},
+            interval:{}
+        }
+
     },
     actions,
     getters,

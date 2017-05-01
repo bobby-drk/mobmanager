@@ -8,9 +8,16 @@ export const notesSync = (state, notes) => state.notes = notes
 export const taskAdd = (state, newTask) =>  state.tasks.unshift(newTask)
 export const taskCompleted = (state, task) => task.completed = !task.completed
 export const taskDelete = (state, index) => state.tasks.splice(index, 1)
-
 export const tasksRemoveCompleted = (state) => state.tasks = state.tasks.filter(task => !task.completed)
 export const tasksSync = (state, tasks) => state.tasks = tasks
+
+export const timerSetInterval = (state, interval) => state.timer.interval = interval
+export const timerSetDuration = (state, duration) => state.timer.duration = duration
+export const timerBuildDuration = (state) => state.timer.duration = moment.duration(state.timer.sessionLength * 60000, 'milliseconds')
+export const timerPaused = (state) => state.timer.paused = true
+export const timerUnpaused = (state) => state.timer.paused = false
+
+
 
 
 export const participantAdd = (state, newParticipant) =>  state.participants.unshift(newParticipant)

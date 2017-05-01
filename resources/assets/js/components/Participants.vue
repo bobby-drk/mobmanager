@@ -13,7 +13,7 @@
                 v-for="(participant, index) in participants"
                 class="list-group-item"
                 :class="{
-                    active: participant.active,
+                    'list-group-item-warning': participant.active,
                     editing: participant == editedParticipant
                 }"
                 @dblclick="editParticipant(participant)">
