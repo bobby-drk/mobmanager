@@ -22,8 +22,35 @@ export const participantDelete = ({ dispatch, state }, index) => {
     state.participants.splice(index, 1)
 }
 
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+
 
 export const timerReignOver = ({dispatch}) => {
+    let originalTitle = "Mob Boss";
+    let altTitle = "The gig is up";
+
+
+    let seperator = "";
+    for(let i = 0; i < 25; i++) {
+
+        sleep(400)
+        if (i % 2) {
+            document.title = altTitle
+        } else {
+            seperator += "."
+            document.title = seperator
+        }
+    }
+
+    document.title = originalTitle
     dispatch("advanceParticipant")
     dispatch("timerReset")
 }
