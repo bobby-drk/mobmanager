@@ -1,0 +1,20 @@
+.timerapp {
+    .panel-body {
+
+        .counter {
+            margin-top: 0px;
+            margin-bottom: 10px;
+            text-align:center;
+            font-family: Orbitron;
+        }
+
+        .controllers {
+
+            .btn, .btn:active, .btn:focus {
+                outline:0 !important;
+            }
+
+        }
+    }
+
+}

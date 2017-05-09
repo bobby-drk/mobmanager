@@ -27,9 +27,16 @@ export default new Vuex.Store({
                 active: false
             }
         ],
-        sessionLength: 1,
         tasks: [],
         notes: [],
+        timer: {
+            sessionLength: .05,
+            paused: true,
+            duration: {},
+            interval:{},
+            audio: new Audio('../../sounds/bell-ringing-05.mp3')
+        }
+
     },
     actions,
     getters,
