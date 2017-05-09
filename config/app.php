@@ -12,8 +12,8 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Mob Manger'),
-
+    'name' => env('APP_NAME', 'Mob Boss'),
+    'version' => '0.0.3',
     /*
     |--------------------------------------------------------------------------
     | Application Environment
