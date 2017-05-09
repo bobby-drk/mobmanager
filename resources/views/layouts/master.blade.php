@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>@yield('title') :: Mob Manager</title>
+        <title>{{ config('app.name') }} [beta] {{ config('app.version') }}</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
