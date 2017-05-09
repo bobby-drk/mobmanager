@@ -33,7 +33,8 @@ export default new Vuex.Store({
             sessionLength: .05,
             paused: true,
             duration: {},
-            interval:{}
+            interval:{},
+            audio: new Audio('../../sounds/bell-ringing-05.mp3')
         }
 
     },

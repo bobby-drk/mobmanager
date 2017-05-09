@@ -16,7 +16,11 @@ export const timerSetDuration = (state, duration) => state.timer.duration = dura
 export const timerBuildDuration = (state) => state.timer.duration = moment.duration(state.timer.sessionLength * 60000, 'milliseconds')
 export const timerPaused = (state) => state.timer.paused = true
 export const timerUnpaused = (state) => state.timer.paused = false
-
+export const timerPlayFinishSound = (state) => state.timer.audio.play()
+export const timerStopFinishSound = (state) => {
+    state.timer.audio.pause()
+    state.timer.audio.currentTime = 0
+}
 
 
 

@@ -1,5 +1,4 @@
 require('./bootstrap');
-
 import store from './store'
 import inputs from './components/inputs'
 
