@@ -30,4 +30,22 @@ abstract class TestCase extends BaseTestCase
         });
 
     }
+
+    /**
+     * Asserts that two given JSON encoded objects or arrays are equal.
+     *
+     * @param string $expectedJson
+     * @param string $actualJson
+     * @param string $message
+     */
+    public static function assertJsonStringNotEqualsJsonString($expectedJson, $actualJson, $message = '')
+    {
+        static::assertJson($expectedJson, $message);
+        static::assertJson($actualJson, $message);
+
+        $expected = json_decode($expectedJson);
+        $actual   = json_decode($actualJson);
+
+        static::assertNotEquals($expected, $actual, $message);
+    }
 }

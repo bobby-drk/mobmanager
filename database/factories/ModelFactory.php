@@ -30,8 +30,11 @@ $factory->define(\App\Models\Mob::class, function (Faker\Generator $faker) {
         ],
     ];
 
+    $name = $faker->safeColorName . ' ' . $faker->firstName;
+
     return [
-        'name' => $faker->safeColorName . $faker->firstName,
-        'data' => json_encode($jsonObject)
+        'name' => $name,
+        'slug' => str_slug($name),
+        'storage' => json_encode($jsonObject)
     ];
 });

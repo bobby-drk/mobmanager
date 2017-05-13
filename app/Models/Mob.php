@@ -12,7 +12,7 @@ class Mob extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'data',
+        'name', 'slug', 'storage',
     ];
 
 }

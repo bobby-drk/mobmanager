@@ -16,7 +16,8 @@ class CreateMobTable extends Migration
         Schema::create('mobs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->json('data');
+            $table->string('slug')->unique();
+            $table->json('storage');
             $table->timestamps();
         });
     }
