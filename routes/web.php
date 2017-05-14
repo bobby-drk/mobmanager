@@ -1,4 +1,4 @@
 <?php
-Route::get('/', function () {
+Route::get('/{slug?}', function ($slug = '') {
     return view('mobBoard');
 });

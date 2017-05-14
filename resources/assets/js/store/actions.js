@@ -13,7 +13,6 @@ export const advanceParticipant = ({ state, commit, getters }) => {
             commit('setParticipantActive', getters.contributors[0])
             break;
         }
-
     }
 }
 
@@ -59,3 +58,23 @@ export const timerReset = ({ commit, state }) => {
     // commit("timerStopFinishSound")
 }
 
+export const persist = ({ getters, state }) => {
+
+    console.log("assembled", getters.assembled)
+
+
+
+    axios.post('/api/mob', {
+        'name': state.mobName,
+        'storage': getters.assembled,
+    }).then(({ data }) => {
+        console.log("response", data)
+        window.history.pushState({}, "", data.slug);
+
+    }).catch((_response) => {
+        console.log("Error")
+    }).then(() => {
+        console.log("turn off loader");
+
+    })
+}

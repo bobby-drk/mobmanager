@@ -1,7 +1,7 @@
 <template>
     <div>
         admin
-
+        <button @click="persist">persist</button>
         <p >
             <button class="button is-primary" @click="adminOff">Close</button>
         </p>
@@ -10,11 +10,16 @@
 
 <script>
 
-    import { mapMutations } from 'vuex'
+    import { mapMutations, mapActions } from 'vuex'
 
     export default {
-        methods: mapMutations({
-            adminOff : 'setAdminDisplayOff',
-        }),
+        methods: {
+            ...mapMutations({
+                adminOff : 'setAdminDisplayOff',
+            }),
+            ...mapActions([
+                'persist'
+            ]),
+        }
     }
 </script>

@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     namespaced: true,
     state: {
+        mobName: "Mob Example",
         adminDisplay: false,
         participants: [
             {

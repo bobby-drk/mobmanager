@@ -10,9 +10,7 @@ class MobController extends Controller
 {
     public function show($slug)
     {
-        return Response::json([
-            'data' => Mob::where("slug", $slug)->firstOrFail()
-        ], 200);
+        return Response::json(Mob::where("slug", $slug)->firstOrFail(), 200);
     }
 
     public function store(Request $request)
@@ -30,9 +28,7 @@ class MobController extends Controller
 
         $mob->save();
 
-        return Response::json([
-            'data' => $mob
-        ], 201);
+        return Response::json($mob, 201);
     }
 
     public function update(Request $request, $slug)

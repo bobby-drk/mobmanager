@@ -8,3 +8,15 @@ export const contributors = state => {
         return participant.contributor
     })
 }
+
+export const assembled = state => {
+
+    return JSON.stringify({
+        participants: state.participants,
+        tasks: state.tasks,
+        notes: state.notes,
+        timer: {
+            sessionLength: state.timer.sessionLength
+        }
+    })
+}

@@ -28,7 +28,6 @@ class MobDataTest extends TestCase
         //Assert
         $response->assertStatus(201);
 
-
         $store_data = Mob::where('name', $mob_data->name)->first();
         $this->assertJsonStringEqualsJsonString($mob_data->storage, $store_data->storage);
 
@@ -101,15 +100,13 @@ class MobDataTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJsonStructure([
-                "data" => [
-                    "name",
-                    "slug",
-                    "storage"
-                ]
+                "name",
+                "slug",
+                "storage"
             ]);
 
         $decodeResponse = $response->decodeResponseJson();
-        $this->assertJsonStringEqualsJsonString($mob_data->storage, $decodeResponse['data']['storage']);
+        $this->assertJsonStringEqualsJsonString($mob_data->storage, $decodeResponse['storage']);
     }
 
     /** @test */
