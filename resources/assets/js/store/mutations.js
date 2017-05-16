@@ -1,6 +1,9 @@
 export const setAdminDisplayOff = (state) =>  state.adminDisplay = false
 export const setAdminDisplayOn = (state) =>  state.adminDisplay = true
 
+export const createdOn = (state) => state.created = true
+export const setSlug = (state, slug) => state.slug = slug
+
 export const noteAdd = (state, newNote) =>  state.notes.unshift(newNote)
 export const noteDelete = (state, index) => state.notes.splice(index, 1)
 export const notesSync = (state, notes) => state.notes = notes
@@ -22,8 +25,6 @@ export const timerStopFinishSound = (state) => {
     state.timer.audio.currentTime = 0
 }
 
-
-
 export const participantAdd = (state, newParticipant) =>  state.participants.unshift(newParticipant)
 export const participantsSync = (state, participants) => state.participants = participants
 export const participantsSetContributor = (state, participant) => participant.contributor = !participant.contributor
@@ -37,3 +38,5 @@ export const setParticipantActive = (state, participant) => {
     participant.contributor = true
     participant.active = !participant.active
 }
+
+

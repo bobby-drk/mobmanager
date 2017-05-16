@@ -1,7 +1,7 @@
 <template>
     <div>
         admin
-        <button @click="persist">persist</button>
+
         <p >
             <button class="button is-primary" @click="adminOff">Close</button>
         </p>

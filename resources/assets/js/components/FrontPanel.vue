@@ -22,17 +22,23 @@
                 <mob-notes></mob-notes>
             </div>
         </div>
+
+        <button @click="persist">persist</button>
     </div>
 </template>
 
 <script>
 
-    import { mapMutations } from 'vuex'
+    import { mapActions, mapMutations } from 'vuex'
 
     export default {
-        methods: mapMutations({
+        methods: {
+            ...mapMutations({
             adminOn : 'setAdminDisplayOn',
-        }),
-
+            }),
+            ...mapActions([
+                'persist'
+            ]),
+        }
     }
 </script>
