@@ -59,9 +59,7 @@ export const timerReset = ({ commit, state }) => {
     // commit("timerStopFinishSound")
 }
 
-export const persist = ({ getters, state, dispatch }) => {
-
-    console.log("assembled", getters.assembled)
+export const persist = ({ getters, state, dispatch, commit }) => {
 
     if (state.persist) {
 
@@ -69,14 +67,18 @@ export const persist = ({ getters, state, dispatch }) => {
             api.createRecord(
                 state.mobName,
                 getters.assembled,
-                data => {
-                    dispatch("created", { data })
-                },
-                () => dispatch("failed")
+                data => dispatch("created", { data }),
+                () => dispatch("failed"),
+                value => commit("setAdminLoader", value)
             )
 
         } else {
-            // dispatch("saveRecord")
+            api.saveRecord(
+                state.slug,
+                getters.assembled,
+                () => dispatch("failed"),
+                value => commit("setAdminLoader", value)
+            )
         }
     }
 }

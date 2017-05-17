@@ -1,5 +1,6 @@
 export const setAdminDisplayOff = (state) =>  state.adminDisplay = false
 export const setAdminDisplayOn = (state) =>  state.adminDisplay = true
+export const setAdminLoader = (state, value) =>  state.adminLoader = value
 
 export const createdOn = (state) => state.created = true
 export const setSlug = (state, slug) => state.slug = slug

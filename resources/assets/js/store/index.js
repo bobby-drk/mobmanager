@@ -14,6 +14,7 @@ export default new Vuex.Store({
         slug: "",
         mobName: "Mob Example",
         adminDisplay: false,
+        adminLoader: false,
         participants: [
             {
                 name: 'Charlie',
