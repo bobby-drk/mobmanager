@@ -6,11 +6,29 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex'
+    import { mapActions, mapMutations, mapState } from 'vuex'
 
     export default {
+        props: ['slug'],
         computed: mapState({
                 showAdmin: state => state.adminDisplay,
         }),
+        methods: {
+            ...mapMutations([
+                'createdOn',
+                'setSlug',
+            ]),
+            ...mapActions([
+                'loadMob'
+            ]),
+        },
+        mounted() {
+
+            if (this.slug) {
+                this.createdOn()
+                this.setSlug(this.slug)
+                this.loadMob()
+            }
+        }
     }
 </script>

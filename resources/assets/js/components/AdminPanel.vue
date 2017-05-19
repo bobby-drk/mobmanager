@@ -10,11 +10,16 @@
 
 <script>
 
-    import { mapMutations } from 'vuex'
+    import { mapMutations, mapActions } from 'vuex'
 
     export default {
-        methods: mapMutations({
-            adminOff : 'setAdminDisplayOff',
-        }),
+        methods: {
+            ...mapMutations({
+                adminOff : 'setAdminDisplayOff',
+            }),
+            ...mapActions([
+                'persist'
+            ]),
+        }
     }
 </script>

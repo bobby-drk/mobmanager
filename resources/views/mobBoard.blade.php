@@ -2,7 +2,9 @@
 
 @section('content')
     <div class='mob-board'>
-        <mob-board mob-id=1></mob-board>
+        <mob-board {{ isset($slug) ? "slug=$slug" : '' }}></mob-board>
     </div>
+    <mob-monitor></mob-monitor>
+
 @stop
 

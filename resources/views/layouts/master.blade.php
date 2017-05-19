@@ -11,12 +11,8 @@
             ]) !!};
         </script>
 
-
-
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 
         @stack('page-css')
 

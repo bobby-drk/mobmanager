@@ -1,5 +1,9 @@
 export const setAdminDisplayOff = (state) =>  state.adminDisplay = false
 export const setAdminDisplayOn = (state) =>  state.adminDisplay = true
+export const setAdminLoader = (state, value) =>  state.adminLoader = value
+
+export const createdOn = (state) => state.created = true
+export const setSlug = (state, slug) => state.slug = slug
 
 export const noteAdd = (state, newNote) =>  state.notes.unshift(newNote)
 export const noteDelete = (state, index) => state.notes.splice(index, 1)
@@ -22,9 +26,9 @@ export const timerStopFinishSound = (state) => {
     state.timer.audio.currentTime = 0
 }
 
-
-
-export const participantAdd = (state, newParticipant) =>  state.participants.unshift(newParticipant)
+export const participantAdd = (state, newParticipant) =>  {
+    state.participants.unshift(newParticipant)
+}
 export const participantsSync = (state, participants) => state.participants = participants
 export const participantsSetContributor = (state, participant) => participant.contributor = !participant.contributor
 
@@ -36,4 +40,16 @@ export const setParticipantActive = (state, participant) => {
 
     participant.contributor = true
     participant.active = !participant.active
+}
+
+export const load = (state, { data }) => {
+
+    let storage = JSON.parse(data.storage)
+
+    state.mobName = data.name
+    state.participants = storage.participants
+    state.tasks = storage.tasks
+    state.notes = storage.notes
+    state.timer.sessionLength = storage.timer.sessionLength
+
 }

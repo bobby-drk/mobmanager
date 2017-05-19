@@ -1,4 +1,5 @@
 import * as browser from '../helpers/browser'
+import api from './api'
 
 export const advanceParticipant = ({ state, commit, getters }) => {
     for(let i = 0; i < getters.contributors.length; i++) {
@@ -13,7 +14,6 @@ export const advanceParticipant = ({ state, commit, getters }) => {
             commit('setParticipantActive', getters.contributors[0])
             break;
         }
-
     }
 }
 
@@ -59,3 +59,49 @@ export const timerReset = ({ commit, state }) => {
     // commit("timerStopFinishSound")
 }
 
+export const persist = ({ getters, state, dispatch, commit }) => {
+
+    if (state.persist) {
+
+        if (!state.created) {
+            api.createRecord(
+                state.mobName,
+                getters.assembled,
+                data => dispatch("created", { data }),
+                () => dispatch("failed"),
+                value => commit("setAdminLoader", value)
+            )
+
+        } else {
+            api.saveRecord(
+                state.slug,
+                getters.assembled,
+                () => dispatch("failed"),
+                value => commit("setAdminLoader", value)
+            )
+        }
+    }
+}
+
+export const created = ({state, commit}, { data }) => {
+    commit("createdOn")
+    commit("setSlug", data.slug)
+
+    window.history.pushState({}, "", data.slug)
+}
+
+export const failed = () => {
+    console.log("Called failed")
+}
+
+export const loadMob = ({ state, dispatch, commit }) => {
+
+    api.fetchMob(
+        state.slug,
+        data => commit("load", { data }),  //onSuccess
+        () => dispatch("failed"),               //onFail
+        value => commit("setAdminLoader", value) //loaderImg
+    )
+
+
+}

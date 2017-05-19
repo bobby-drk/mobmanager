@@ -9,24 +9,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     namespaced: true,
     state: {
+        persist: true,
+        created: false,
+        slug: "",
+        mobName: "",
         adminDisplay: false,
-        participants: [
-            {
-                name: 'Charlie',
-                contributor: true,
-                active: false
-            },
-            {
-                name: 'Bruce Wayne',
-                contributor: true,
-                active: true
-            },
-            {
-                name: 'Clark Kent',
-                contributor: false,
-                active: false
-            }
-        ],
+        adminLoader: false,
+        participants: [],
         tasks: [],
         notes: [],
         timer: {
