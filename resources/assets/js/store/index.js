@@ -12,26 +12,10 @@ export default new Vuex.Store({
         persist: true,
         created: false,
         slug: "",
-        mobName: "Mob Example",
+        mobName: "",
         adminDisplay: false,
         adminLoader: false,
-        participants: [
-            {
-                name: 'Charlie',
-                contributor: true,
-                active: false
-            },
-            {
-                name: 'Bruce Wayne',
-                contributor: true,
-                active: true
-            },
-            {
-                name: 'Clark Kent',
-                contributor: false,
-                active: false
-            }
-        ],
+        participants: [],
         tasks: [],
         notes: [],
         timer: {

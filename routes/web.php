@@ -1,4 +1,2 @@
 <?php
-Route::get('/{slug?}', function ($slug = '') {
-    return view('mobBoard');
-});
+Route::get('/{slug?}', 'MainController@index');

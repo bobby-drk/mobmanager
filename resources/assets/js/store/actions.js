@@ -84,8 +84,6 @@ export const persist = ({ getters, state, dispatch, commit }) => {
 }
 
 export const created = ({state, commit}, { data }) => {
-    console.log(data)
-
     commit("createdOn")
     commit("setSlug", data.slug)
 
@@ -96,20 +94,14 @@ export const failed = () => {
     console.log("Called failed")
 }
 
+export const loadMob = ({ state, dispatch, commit }) => {
 
-// export const saveRecord = ({ getters, state }) => {
-//     axios.post('/api/mob', {
-//         'name': state.mobName,
-//         'storage': getters.assembled,
-//     }).then(({ data }) => {
-//         commit("createdOn")
-//         commit("setSlug", data.slug)
+    api.fetchMob(
+        state.slug,
+        data => commit("load", { data }),  //onSuccess
+        () => dispatch("failed"),               //onFail
+        value => commit("setAdminLoader", value) //loaderImg
+    )
 
-//         window.history.pushState({}, "", data.slug);
-//     }).catch((_response) => {
-//         console.log("Error")
-//     }).then(() => {
-//         console.log("turn off loader");
-//     })
 
-// }
+}

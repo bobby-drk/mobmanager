@@ -14,7 +14,8 @@ export default {
             console.log("create Failed");
 
             failed()
-        }).then(() => {
+        })
+        .then(() => {
             loader(false)
         })
 
@@ -25,20 +26,30 @@ export default {
         loader(true)
         axios.put('api/mob/' + slug, {
             'storage': assembled,
-        })
-        .then(({ data }) => {
-            console.log("worked");
+            })
+            .catch((_response) => {
+                console.log("save Failed");
+                failed()
+            })
+            .then(() => {
+                loader(false)
+            })
 
-        })
-        .catch((_response) => {
-            console.log("save Failed");
-            failed()
-        }).then(() => {
-            loader(false)
-        })
+    },
+
+    fetchMob (slug, save, failed, loader) {
+
+        loader(true)
+        axios.get('api/mob/' + slug)
+            .then(({ data }) => {
+                save(data)
+            })
+            .catch((_response) => {
+                failed()
+            })
+            .then(() => {
+                loader(false)
+            })
 
     }
-
-
-
 }

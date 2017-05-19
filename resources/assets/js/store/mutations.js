@@ -26,7 +26,9 @@ export const timerStopFinishSound = (state) => {
     state.timer.audio.currentTime = 0
 }
 
-export const participantAdd = (state, newParticipant) =>  state.participants.unshift(newParticipant)
+export const participantAdd = (state, newParticipant) =>  {
+    state.participants.unshift(newParticipant)
+}
 export const participantsSync = (state, participants) => state.participants = participants
 export const participantsSetContributor = (state, participant) => participant.contributor = !participant.contributor
 
@@ -40,4 +42,14 @@ export const setParticipantActive = (state, participant) => {
     participant.active = !participant.active
 }
 
+export const load = (state, { data }) => {
 
+    let storage = JSON.parse(data.storage)
+
+    state.mobName = data.name
+    state.participants = storage.participants
+    state.tasks = storage.tasks
+    state.notes = storage.notes
+    state.timer.sessionLength = storage.timer.sessionLength
+
+}
