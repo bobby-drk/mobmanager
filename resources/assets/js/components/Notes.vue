@@ -29,7 +29,7 @@
                     @blur="doneEdit(note, index)"
                     @keyup.enter="doneEdit(note, index)"
                     @keyup.esc="cancelEdit(note)"
-                    :style="'height:' + editBoxHeight | minHeight +'px'">
+                    :style="'height:'+ minHeight +'px'">
                 </textarea>
 
                 <div class="button-bar">
@@ -84,12 +84,12 @@
                 deep: true
             }
         },
-        computed: mapState({
-            notes: state => state.notes,
-        }),
-        filters: {
-            minHeight: function (n) {
-                return n < 100 ? 100 : n
+        computed: {
+            ...mapState({
+                notes: state => state.notes,
+            }),
+            minHeight () {
+                return this.editBoxHeight < 100 ? 100 : this.editBoxHeight
             }
         },
         methods: {
@@ -98,10 +98,6 @@
                 'noteDelete',
                 'notesSync'
             ]),
-            tmpFunc () {
-                console.log("CALLED");
-
-            },
             addNote () {
                 this.noteAdd ({
                     body: "",
