@@ -13,7 +13,7 @@ export default new Vuex.Store({
         created: false,
         slug: "",
         mobName: "",
-        adminDisplay: false,
+        adminDisplay: true,
         adminLoader: false,
         participants: [],
         tasks: [],
