@@ -21,10 +21,11 @@
                 <div class="view">
 
                     <input-checkbox
+                        :name="'participant_'+index"
+                        @click="participantsSetContributor(participant)"
                         v-model="participant.contributor">
+                        {{ participant.name }}
                     </input-checkbox>
-
-                    <span @click="participantsSetContributor(participant)">{{ participant.name }}</span>
 
                     <div class="btn-group pull-right button-bar" role="group" >
                         <button

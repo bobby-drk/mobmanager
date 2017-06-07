@@ -26,10 +26,23 @@ export const participantDelete = ({ dispatch, state }, index) => {
 
 export const timerReignOver = ( {commit, dispatch, state} ) => {
 
-    browser.flashToTitle("The gig is up")
-    commit('timerPlayFinishSound')
+    if(state.timerOptions.flashBrowser) {
+        browser.flashToTitle("The gig is up")
+    }
+
+    if(state.timerOptions.playSound) {
+        commit('timerPlayFinishSound')
+    }
     dispatch("advanceParticipant")
+    commit("timerIncrement")
     dispatch("timerReset")
+
+    if(state.timerOptions.suggestBreaks && state.timer.count >= state.timerOptions.breakIntervals) {
+        console.log("take a break")
+        commit("timerResetCounter")
+        commit("timerBreakOn")
+    }
+
 }
 
 export const timerStart = ({ commit, dispatch, state  }) => {

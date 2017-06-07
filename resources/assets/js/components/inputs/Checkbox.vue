@@ -1,34 +1,36 @@
 <template>
-    <div
-        class="custom-checkbox"
-        @click="toggle(value)"
-        :style="'width:' + width+ 'px'"
-        ref="theBox">
-            <i class="fa" :class="value ? checkedClass : uncheckedClass"></i>
+    <div>
+        <input
+            class="styled-checkbox"
+            :id="name"
+            :name="name"
+            :value="value"
+            :checked="value"
+            type="checkbox"
+            @click="checked($event.target.checked)">
+
+            <label :for="name">
+                <slot></slot>
+            </label>
     </div>
 </template>
 
 <script>
 
     export default {
-        props: ['value'],
-        data () {
-            return {
-                uncheckedClass: "fa-square-o",
-                checkedClass: "fa-check-square-o",
-                height: "",
-                width: "",
+        props: {
+            value: {
+                required: true
+            } ,
+            name: {
+                type: String,
+                required: true
             }
         },
         methods: {
-            toggle(value) {
-                this.$emit('input', !value);
+            checked(value) {
+                this.$emit('input', value);
             },
         },
-        mounted() {
-            this.$nextTick(() => {
-                this.width = this.$refs.theBox.clientWidth + 5;
-            })
-        }
     }
 </script>

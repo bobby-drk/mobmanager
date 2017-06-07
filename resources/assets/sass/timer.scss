@@ -16,5 +16,16 @@
 
         }
     }
+    .break {
+        background-color: $btn-danger-bg;
+        color: $btn-danger-color;
+        border:2px solid $btn-danger-border;
+        padding:20px;
+        font-style: italic;
+
+        .end-break {
+            font-style: none;
+        }
+    }
 
 }
