@@ -155,12 +155,18 @@
     export default {
         computed: {
             ...mapState({
-                persist: state => state.persist,
                 mobName: state => state.mobName,
             }),
             save: {
                 get() { return this.$store.state.persist },
-                set(value) { this.$store.commit('togglePersist')  }
+                set(value) {
+                    if (value) {
+                        this.$store.commit('persistOn')
+                    } else {
+                        this.$store.commit('persistOff')
+                    }
+
+                }
             },
             name: {
                 get() { return this.mobName },
@@ -198,7 +204,6 @@
         methods: {
             ...mapMutations([
                 'setAdminDisplayOff',
-                'togglePersist',
                 'setMobName',
             ])
         }

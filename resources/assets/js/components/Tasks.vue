@@ -188,7 +188,7 @@
                     creation_date: moment().format("YYYYMMDDHHmmss")
                 })
 
-                this.$nextTick(() =>  this.editTask(this.getTasksByUuid(key)) )
+                this.$nextTick(() =>  this.editTask(this.getTaskByUuid(key)) )
             },
             editTask (task) {
                 this.beforeEditCache = task.title
@@ -224,7 +224,7 @@
                     return list.sort((a, b) => b.creation_date - a.creation_date)
                 }
             },
-            getTasksByUuid(key) {
+            getTaskByUuid(key) {
 
                 return this.tasks.filter(task => task.key == key).shift()
             }

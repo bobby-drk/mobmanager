@@ -1,7 +1,8 @@
 export const setAdminDisplayOff = (state) =>  state.adminDisplay = false
 export const setAdminDisplayOn = (state) =>  state.adminDisplay = true
 export const setAdminLoader = (state, value) =>  state.adminLoader = value
-export const togglePersist= (state) =>  state.persist = !state.persist
+export const persistOn = (state) =>  state.persist = true
+export const persistOff = (state) =>  state.persist = false
 export const setMobName = (state, name) => state.mobName = name
 
 export const createdOn = (state) => state.created = true
@@ -59,10 +60,14 @@ export const load = (state, { data }) => {
 
     let storage = JSON.parse(data.storage)
 
+    state.persist = storage.persist
     state.mobName = data.name
     state.participants = storage.participants
     state.tasks = storage.tasks
+    state.tasksOptions = storage.tasksOptions
     state.notes = storage.notes
+    state.notesOptions = storage.notesOptions
     state.timerOptions.sessionLength = storage.timerOptions.sessionLength
+    state.timerOptions = storage.timerOptions
 
 }
