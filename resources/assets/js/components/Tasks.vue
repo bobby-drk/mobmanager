@@ -28,11 +28,11 @@
                     <div class="view">
 
                         <input-checkbox
-                            class="lg"
-                            v-model='task.completed'>
+                            :name="'task_'+index"
+                            @click="taskCompleted(task)"
+                            v-model="task.completed">
+                            {{ task.title }}
                         </input-checkbox>
-
-                        <label @click="taskCompleted(task)">{{ task.title }}</label>
 
                         <div class="btn-group pull-right button-bar" role="group">
 
@@ -105,6 +105,7 @@
 
 <script>
     import { mapState, mapMutations } from 'vuex'
+    import * as uuid from '../helpers/uuid'
 
     export default {
         data () {
@@ -139,8 +140,11 @@
         computed: {
             ...mapState({
                 tasks: state => state.tasks,
+                order: state => state.tasksOptions.order,
             }),
             filteredTasks () {
+
+                this.tasks = this.optionalSortFilter(this.tasks)
 
                 switch(this.visibility) {
                     case "all":
@@ -174,15 +178,17 @@
             ]),
             addTask () {
                 this.addingTask = true;
+                let key = uuid.generate()
+
                 this.taskAdd({
                     title: '',
                     completed: false,
-                    severity: 2
+                    severity: 2,
+                    key: key,
+                    creation_date: moment().format("YYYYMMDDHHmmss")
                 })
 
-                this.$nextTick(function () {
-                    this.editTask(this.tasks[0])
-                })
+                this.$nextTick(() =>  this.editTask(this.getTaskByUuid(key)) )
             },
             editTask (task) {
                 this.beforeEditCache = task.title
@@ -211,6 +217,18 @@
             severityClass(index) {
                 return this.severityClasses[(index -1)]
             },
+            optionalSortFilter (list) {
+                if(this.order) {
+                    return list.sort((a, b) => b.severity - a.severity)
+                } else {
+                    return list.sort((a, b) => b.creation_date - a.creation_date)
+                }
+            },
+            getTaskByUuid(key) {
+
+                return this.tasks.filter(task => task.key == key).shift()
+            }
+
         },
         directives: {
             'task-focus'  (el, value) {

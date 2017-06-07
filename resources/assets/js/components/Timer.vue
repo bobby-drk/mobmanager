@@ -7,7 +7,19 @@
             </h3>
         </div>
 
-        <div class="panel-body">
+        <div v-if="onBreak">
+            <div class='break'>
+
+                <h2>Take a Break</h2>
+                <p>8.3 out of 10 doctors recommend regular breaks!</p>
+
+                <button class='btn btn-primary btn-sm end-break'
+                @click="onBreak = false">
+                    Break Over
+                </button>
+            </div>
+        </div>
+        <div class="panel-body" v-else>
 
             <h2 class='counter'>{{ remaining }}</h2>
 
@@ -48,9 +60,24 @@
             remaining() {
                 return moment(this.duration.asMilliseconds()).format('mm:ss')
             },
+            paused: {
+                get() { return this.$store.state.timer.paused },
+                set(value) {
+                    if(value) {
+                        this.$store.commit('timerPaused')
+                    } else {
+                        this.$store.commit('timerUnpaused')
+                    }
+                }
+            },
+            onBreak: {
+                get() { return this.$store.state.timer.onBreak },
+                set(value) {
+                    this.$store.commit('timerBreakOff')
+                }
+            },
             ...mapState({
                 duration: state => state.timer.duration,
-                paused: state => state.timer.paused,
             }),
         },
         methods: {

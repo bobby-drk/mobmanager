@@ -9,7 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     namespaced: true,
     state: {
-        persist: true,
+        persist: false,
         created: false,
         slug: "",
         mobName: "",
@@ -17,13 +17,27 @@ export default new Vuex.Store({
         adminLoader: false,
         participants: [],
         tasks: [],
+        tasksOptions: {
+            order: false
+        },
         notes: [],
+        notesOptions:{
+            order: false
+        },
         timer: {
-            sessionLength: .05,
             paused: true,
             duration: {},
             interval:{},
-            audio: new Audio('../../sounds/bell-ringing-05.mp3')
+            audio: new Audio('../../sounds/bell-ringing-05.mp3'),
+            count:0,
+            onBreak: false
+        },
+        timerOptions: {
+            sessionLength: .05,
+            playSound: false,
+            flashBrowser: false,
+            suggestBreaks: true,
+            breakIntervals: 5
         }
 
     },

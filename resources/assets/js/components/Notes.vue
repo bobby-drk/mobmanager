@@ -10,13 +10,13 @@
 
         <div class="panel-body note-list">
 
-            <div v-for="(note, index) in notes"
+            <div v-for="(note, index) in filteredNotes"
                 class="alert"
                 :class="[
                     severityClass(note.severity),
                     {'editing': note == editedNote }
                 ]"
-                @dblclick="editNote(note, index)"
+                @dblclick="editNote(note)"
                 role="alert"
                 ref="myNotes">
 
@@ -26,8 +26,8 @@
                     class="edit"
                     v-model="note.body"
                     v-note-focus="note == editedNote"
-                    @blur="doneEdit(note, index)"
-                    @keyup.enter="doneEdit(note, index)"
+                    @blur="doneEdit(note)"
+                    @keyup.enter="doneEdit(note)"
                     @keyup.esc="cancelEdit(note)"
                     :style="'height:'+ minHeight +'px'">
                 </textarea>
@@ -43,7 +43,7 @@
                         <button
                              type="button"
                              class="btn btn-default btn-xs"
-                             @click="editNote(note, index)">
+                             @click="editNote(note)">
                                 <i class="fa fa-pencil"></i>
                         </button>
                         <button
@@ -62,6 +62,7 @@
 
 <script>
     import { mapState, mapMutations } from 'vuex'
+    import * as uuid from '../helpers/uuid'
 
     export default {
         data () {
@@ -87,10 +88,15 @@
         computed: {
             ...mapState({
                 notes: state => state.notes,
+                order: state => state.notesOptions.order,
             }),
             minHeight () {
                 return this.editBoxHeight < 100 ? 100 : this.editBoxHeight
+            },
+            filteredNotes () {
+                return this.notes = this.optionalSortFilter(this.notes)
             }
+
         },
         methods: {
             ...mapMutations([
@@ -99,16 +105,23 @@
                 'notesSync'
             ]),
             addNote () {
+                let key = uuid.generate()
+
                 this.noteAdd ({
                     body: "",
-                    severity: 2
+                    severity: 2,
+                    key: key,
+                    creation_date: moment().format("YYYYMMDDHHmmss")
                 })
 
                 this.$nextTick(function () {
-                    this.editNote(this.notes[0], 0)
+                    this.editNote(this.getNoteByUuid(key))
                 })
             },
-            editNote (note, index) {
+            editNote (note) {
+
+                let index = this.notes.indexOf(note)
+
                 if(typeof this.$refs.myNotes[index] !== "undefined") {
                     this.editBoxHeight = (this.$refs.myNotes[index].clientHeight * .8)
                 } else {
@@ -118,14 +131,14 @@
                 this.beforeEditCache = note.body
                 this.editedNote = note
             },
-            doneEdit (note, index) {
+            doneEdit (note) {
                 if (!this.editedNote) {
                     return
                 }
                 this.editedNote = null
                 note.body = note.body.trim()
                 if (!note.body) {
-                    this.noteDelete(index)
+                    this.noteDelete(this.notes.indexOf(note))
                 }
             },
             cancelEdit (note) {
@@ -135,6 +148,17 @@
             severityClass(index) {
                 return this.severityClasses[(index -1)]
             },
+            optionalSortFilter (list) {
+                if(this.order) {
+                    return list.sort((a, b) => b.severity - a.severity)
+                } else {
+                    return list.sort((a, b) => b.creation_date - a.creation_date)
+                }
+            },
+            getNoteByUuid(key) {
+
+                return this.notes.filter(note => note.key == key).shift()
+            }
         },
         directives: {
             'note-focus' (el, value) {

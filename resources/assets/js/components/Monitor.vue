@@ -17,7 +17,9 @@
         watch: {
             assembled: {
                 handler: _.debounce(function (e) {
-                    this.persist
+                    if(this.save) {
+                        this.persist
+                    }
                 }, 5000),
                 deep: true
             }
@@ -25,6 +27,7 @@
         computed: {
             ...mapState({
                 adminLoader: state => state.adminLoader,
+                save: state => state.persist,
             }),
             ...mapGetters([
                 'assembled'
