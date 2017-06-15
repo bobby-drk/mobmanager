@@ -37,6 +37,20 @@ export default {
 
     },
 
+    deleteRecord (slug, failed, loader) {
+
+        loader(true)
+        axios.delete('api/mob/' + slug)
+            .catch((_response) => {
+                console.log("delete Failed");
+                failed()
+            })
+            .then(() => {
+                loader(false)
+            })
+
+    },
+
     fetchMob (slug, save, failed, loader) {
 
         loader(true)

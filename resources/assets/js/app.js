@@ -10,6 +10,7 @@ Vue.component('mob-notes', require('./components/Notes'));
 Vue.component('mob-tasks', require('./components/Tasks'));
 Vue.component('participants', require('./components/Participants'));
 Vue.component('mob-monitor', require('./components/Monitor'));
+Vue.component('confirm-alert', require('./components/Confirm'));
 
 const app = new Vue({
     store,

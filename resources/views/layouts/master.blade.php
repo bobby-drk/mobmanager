@@ -18,7 +18,7 @@
 
     </head>
 
-    <body>
+    <body class="modal-open">
         <div id="app">
 
             <!-- Main Content Area-->

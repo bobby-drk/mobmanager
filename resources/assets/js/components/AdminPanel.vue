@@ -33,6 +33,11 @@
                         Use long term storage
                     </input-checkbox>
                 </h3>
+                <confirm-alert
+                    v-if="alerts.mobDeletionWarning"
+                    @confirm="confirmMobDeletion"
+                    buttonType="yesNo">If you turn off long term storage, anything currently saved will be removed. Do you want to permanently delete your long term storage?</confirm-alert>
+                <confirm-alert v-if="alerts.mobNeedsName" @confirm="confirmMobName">You must have a mob name before you can use long term storage.</confirm-alert>
                 <p>MobBoss is not responsible for loss of data.  Data is secure only to the extent needed by the MobBoss applicaiton.  Store sensitive information at your own risk.</p>
             </div>
         </div>
@@ -145,6 +150,7 @@
                 <button class="btn btn-default btn-sm pull-right" @click="setAdminDisplayOff">Close</button>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -153,6 +159,14 @@
     import { mapActions, mapMutations, mapState } from 'vuex'
 
     export default {
+        data() {
+            return {
+                alerts: {
+                    mobNeedsName: false,
+                    mobDeletionWarning: false
+                }
+            }
+        },
         computed: {
             ...mapState({
                 mobName: state => state.mobName,
@@ -161,9 +175,14 @@
                 get() { return this.$store.state.persist },
                 set(value) {
                     if (value) {
-                        this.$store.commit('persistOn')
+                        if(this.name == "") {
+                            this.alerts.mobNeedsName = true
+                        } else {
+                            this.$store.commit('persistOn')
+                        }
+
                     } else {
-                        this.$store.commit('persistOff')
+                        this.alerts.mobDeletionWarning = true
                     }
 
                 }
@@ -205,7 +224,26 @@
             ...mapMutations([
                 'setAdminDisplayOff',
                 'setMobName',
-            ])
+            ]),
+            confirmMobName() {
+
+                this.alerts.mobNeedsName = false
+
+                if(this.name == "") {
+                    this.$store.commit('persistOff')
+                }
+            },
+            confirmMobDeletion(value) {
+                this.alerts.mobDeletionWarning = false
+
+                if(value) {
+                    this.$store.dispatch('deleteMob')
+                    this.$store.commit('persistOff')
+                    this.$store.commit('createdOff')
+                } else {
+                    this.$store.commit('persistOn')
+                }
+            }
         }
     }
 </script>
