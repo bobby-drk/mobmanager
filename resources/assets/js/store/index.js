@@ -9,10 +9,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     namespaced: true,
     state: {
-        persist: false,
+        persist: true,
         created: false,
-        slug: "",
-        mobName: "",
+        slug: "russian-mob",
+        mobName: "Russian Mob",
         adminDisplay: false,
         adminLoader: false,
         participants: [],

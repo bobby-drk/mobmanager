@@ -5,6 +5,5 @@
         <mob-board {{ isset($slug) ? "slug=$slug" : '' }}></mob-board>
     </div>
     <mob-monitor></mob-monitor>
-
 @stop
 

@@ -41,7 +41,6 @@ export const timerReignOver = ( {commit, dispatch, state} ) => {
         commit("timerResetCounter")
         commit("timerBreakOn")
     }
-
 }
 
 export const timerStart = ({ commit, dispatch, state  }) => {
@@ -114,6 +113,13 @@ export const loadMob = ({ state, dispatch, commit }) => {
         () => dispatch("failed"),               //onFail
         value => commit("setAdminLoader", value) //loaderImg
     )
+}
 
+export const deleteMob = ({ state, dispatch, commit }) => {
 
+    api.deleteRecord(
+        state.slug,
+        () => dispatch("failed"),               //onFail
+        value => commit("setAdminLoader", value) //loaderImg
+    )
 }

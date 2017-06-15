@@ -6,6 +6,7 @@ export const persistOff = (state) =>  state.persist = false
 export const setMobName = (state, name) => state.mobName = name
 
 export const createdOn = (state) => state.created = true
+export const createdOff = (state) => state.created = false
 export const setSlug = (state, slug) => state.slug = slug
 
 export const noteAdd = (state, newNote) =>  state.notes.unshift(newNote)
