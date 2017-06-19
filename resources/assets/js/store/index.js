@@ -9,10 +9,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     namespaced: true,
     state: {
-        persist: true,
+        persist: false,
         created: false,
-        slug: "russian-mob",
-        mobName: "Russian Mob",
+        slug: "",
+        mobName: "",
         adminDisplay: false,
         adminLoader: false,
         participants: [],
@@ -33,7 +33,7 @@ export default new Vuex.Store({
             onBreak: false
         },
         timerOptions: {
-            sessionLength: .05,
+            sessionLength: 10,
             playSound: false,
             flashBrowser: false,
             suggestBreaks: true,
