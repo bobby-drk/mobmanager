@@ -23,6 +23,7 @@ export default new Vuex.Store({
             order: false
         },
         timer: {
+            created: false,
             paused: true,
             duration: {},
             interval:{},

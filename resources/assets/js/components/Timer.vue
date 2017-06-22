@@ -78,6 +78,7 @@
             },
             ...mapState({
                 duration: state => state.timer.duration,
+                created: state => state.timer.created,
             }),
         },
         methods: {
@@ -87,10 +88,14 @@
             ]),
             ...mapMutations([
                 'timerBuildDuration',
+                'TimerCreate'
             ]),
         },
         created() {
-            this.timerBuildDuration()
+            if (!this.created) {
+                this.timerBuildDuration()
+                this.TimerCreate()
+            }
         }
     }
 </script>
