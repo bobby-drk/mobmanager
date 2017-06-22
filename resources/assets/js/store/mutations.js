@@ -29,6 +29,7 @@ export const timerToggleFlashBrowser    = (state, value) => state.timerOptions.f
 export const timerTogglePlaySound       = (state, value) => state.timerOptions.playSound = value
 export const timerToggleSuggestBreaks   = (state, value) => state.timerOptions.suggestBreaks = value
 export const timerBuildDuration = (state) => state.timer.duration = moment.duration(state.timerOptions.sessionLength * 60000, 'milliseconds')
+export const TimerCreate = (state) => state.timer.created = true
 export const timerPaused = (state) => state.timer.paused = true
 export const timerUnpaused = (state) => state.timer.paused = false
 export const timerBreakOn = (state) => state.timer.onBreak = true
