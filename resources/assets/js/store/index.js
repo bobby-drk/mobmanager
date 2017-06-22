@@ -4,8 +4,6 @@ import * as actions from './actions'
 import * as getters from './getters'
 import * as mutations from './mutations'
 
-Vue.use(Vuex)
-
 export default new Vuex.Store({
     namespaced: true,
     state: {

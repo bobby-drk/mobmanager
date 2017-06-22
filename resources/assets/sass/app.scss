@@ -4,14 +4,15 @@
 @import url('https://fonts.googleapis.com/css?family=Orbitron:400,700');
 
 // Variables
-@import "./flatly/_variables";
 @import "variables";
+@import "./flatly/_variables";
+
 
 
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "./flatly/_bootswatch.css";
+@import "./flatly/_bootswatch.scss";
 
 
 
