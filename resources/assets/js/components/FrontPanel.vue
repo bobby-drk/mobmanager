@@ -2,7 +2,7 @@
     <div>
         <div class='row bottom-buffer '>
             <div class="col-md-11">
-                Mob Boss
+                <h2 class="margin-manipulator-m">{{ mobName }}</h2>
             </div>
             <div class="col-md-1">
                 <span class="glyphicon glyphicon-cog pull-right btn-admin" @click="adminOn"></span>
@@ -27,9 +27,14 @@
 
 <script>
 
-    import { mapMutations } from 'vuex'
+    import { mapMutations, mapState } from 'vuex'
 
     export default {
+        computed: {
+            ...mapState({
+                mobName: state => state.mobName,
+            }),
+        },
         methods: {
             ...mapMutations({
                 adminOn : 'setAdminDisplayOn',
