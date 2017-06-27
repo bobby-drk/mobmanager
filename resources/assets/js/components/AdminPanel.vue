@@ -1,5 +1,5 @@
 <template>
-    <div class="admin-panel">
+    <div class="mob-board admin-panel">
         <div class='row'>
             <div class="col-sm-6">
                 <div class="panel panel-warning ">

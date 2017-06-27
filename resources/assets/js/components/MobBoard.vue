@@ -1,7 +1,11 @@
 <template>
     <div>
-        <admin-panel v-if="showAdmin"></admin-panel>
-        <front-panel v-else></front-panel>
+        <transition
+        :name="(showAdmin) ? 'turn-clockwise' : 'turn-counter-clockwise'"
+        mode='out-in'>
+            <admin-panel v-if="showAdmin"></admin-panel>
+            <front-panel v-else></front-panel>
+        </transition>
     </div>
 </template>
 
@@ -10,6 +14,11 @@
 
     export default {
         props: ['slug'],
+        data() {
+            return {
+                transition: "turn-clockwise"
+            }
+        },
         computed: mapState({
                 showAdmin: state => state.adminDisplay,
         }),

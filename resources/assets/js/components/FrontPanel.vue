@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='mob-board'>
         <div class='row bottom-buffer '>
             <div class="col-md-11">
                 <h2 class="margin-manipulator-m">{{ mobName }}</h2>
