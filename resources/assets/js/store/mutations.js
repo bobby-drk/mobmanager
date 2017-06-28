@@ -4,6 +4,8 @@ export const setAdminLoader = (state, value) =>  state.adminLoader = value
 export const persistOn = (state) =>  state.persist = true
 export const persistOff = (state) =>  state.persist = false
 export const setMobName = (state, name) => state.mobName = name
+export const setFeatureNameOption = (state, value) => state.featureNameOption = value
+export const setFeatureName = (state, name) => state.featureName = name
 
 export const createdOn = (state) => state.created = true
 export const createdOff = (state) => state.created = false

@@ -12,15 +12,38 @@
 
                     <div class="panel-body">
 
-                        <div class="form-group tight-bottom">
-                            <label  for="mob-name">Mob Name</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="mob-name"
-                                v-model="name">
+                        <div class='row bottom-buffer'>
+                            <div class="col-sm-12">
+                                <div class="form-group tight-bottom">
+                                    <label  for="mob-name">Mob Name</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="mob-name"
+                                        v-model="name">
+                                </div>
+                                <div class="note">mob url: /mob-example</div>
+                            </div>
                         </div>
-                        <div class="note">mob url: /mob-example</div>
+                        <div class='row'>
+                            <div class="col-sm-12">
+                                <input-checkbox
+                                    name='show_feature_name'
+                                    v-model="featureNameOption">
+                                    Add a feature name.  Displays on front page.
+                                </input-checkbox>
+
+                                <div class="form-group tight-bottom" v-if="featureNameOption">
+                                    <label  for="feature-name">Feature Name</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="feature-name"
+                                        v-model="featureName">
+                                </div>
+
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -190,6 +213,19 @@
             name: {
                 get() { return this.mobName },
                 set(value) { this.setMobName(value) }
+            },
+            featureNameOption: {
+                get() { return this.$store.state.featureNameOption},
+                set(value) {
+                    this.$store.commit('setFeatureNameOption', value)
+                    if (!value) {
+                        this.$store.commit('setFeatureName', '')
+                    }
+                }
+            },
+            featureName: {
+                get() { return this.$store.state.featureName},
+                set(value) { this.$store.commit('setFeatureName', value) }
             },
             timerDuration: {
                 get() { return this.$store.state.timerOptions.sessionLength },
