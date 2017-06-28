@@ -2,7 +2,7 @@
     <div class='mob-board'>
         <div class='row bottom-buffer '>
             <div class="col-md-11">
-                <h2 class="margin-manipulator-m">{{ mobName }}</h2>
+                <h2 class="margin-manipulator-m" v-if="mobName || featureName">{{ mobName }} <span v-if="featureName"> <span v-if="mobName">:</span> {{ featureName }}</span></h2>
             </div>
             <div class="col-md-1">
                 <span class="glyphicon glyphicon-cog pull-right btn-admin" @click="adminOn"></span>
@@ -33,6 +33,7 @@
         computed: {
             ...mapState({
                 mobName: state => state.mobName,
+                featureName: state => state.featureName,
             }),
         },
         methods: {
