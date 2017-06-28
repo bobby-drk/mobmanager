@@ -13,6 +13,8 @@ export const assembled = state => {
 
     return JSON.stringify({
         persist: state.persist,
+        featureNameOption: state.featureNameOption,
+        featureName: state.featureName,
         participants: state.participants,
         tasks: state.tasks,
         tasksOptions: state.tasksOptions,

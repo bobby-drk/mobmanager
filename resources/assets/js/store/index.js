@@ -11,6 +11,8 @@ const options = {
         created: false,
         slug: "",
         mobName: "",
+        featureNameOption: false,
+        featureName: "",
         adminDisplay: false,
         adminLoader: false,
         participants: [],
