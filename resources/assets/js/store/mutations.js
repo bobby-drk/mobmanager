@@ -4,6 +4,8 @@ export const setAdminLoader = (state, value) =>  state.adminLoader = value
 export const persistOn = (state) =>  state.persist = true
 export const persistOff = (state) =>  state.persist = false
 export const setMobName = (state, name) => state.mobName = name
+export const setFeatureNameOption = (state, value) => state.featureNameOption = value
+export const setFeatureName = (state, name) => state.featureName = name
 
 export const createdOn = (state) => state.created = true
 export const createdOff = (state) => state.created = false
@@ -64,12 +66,13 @@ export const load = (state, { data }) => {
 
     state.persist = storage.persist
     state.mobName = data.name
+    state.featureNameOption = storage.featureNameOption
+    state.featureName = storage.featureName
     state.participants = storage.participants
     state.tasks = storage.tasks
     state.tasksOptions = storage.tasksOptions
     state.notes = storage.notes
     state.notesOptions = storage.notesOptions
-    state.timerOptions.sessionLength = storage.timerOptions.sessionLength
     state.timerOptions = storage.timerOptions
 
 }
