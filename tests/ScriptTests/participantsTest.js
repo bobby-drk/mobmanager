@@ -46,12 +46,14 @@ test('participant object can be synced', t => {
 test('a participant contributor can be toggled', t => {
 
     // //arrange
-    const state = { participants: [
-        {
+    let participant =         {
             name: 'Clark',
             contributor: true,
             active: false
         }
+
+    const state = { participants: [
+
     ] }
 
 
@@ -61,7 +63,6 @@ test('a participant contributor can be toggled', t => {
             contributor: true,
             active: false
     })
-console.log(state);
 
     // //assert
     t.deepEqual(state.participants, {
