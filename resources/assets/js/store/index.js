@@ -4,7 +4,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import * as mutations from './mutations'
 
-export default new Vuex.Store({
+const options = {
     namespaced: true,
     state: {
         persist: false,
@@ -43,4 +43,7 @@ export default new Vuex.Store({
     actions,
     getters,
     mutations
-})
+}
+
+export default new Vuex.Store(options);
+export { options };
