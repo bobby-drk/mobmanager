@@ -66,12 +66,13 @@ export const load = (state, { data }) => {
 
     state.persist = storage.persist
     state.mobName = data.name
+    state.featureNameOption = storage.featureNameOption
+    state.featureName = storage.featureName
     state.participants = storage.participants
     state.tasks = storage.tasks
     state.tasksOptions = storage.tasksOptions
     state.notes = storage.notes
     state.notesOptions = storage.notesOptions
-    state.timerOptions.sessionLength = storage.timerOptions.sessionLength
     state.timerOptions = storage.timerOptions
 
 }
