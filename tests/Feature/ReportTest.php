@@ -19,13 +19,16 @@ class ReportTest extends TestCase
         $mob_data = factory(\App\Models\Mob::class)->create();
 
         //Act
-        echo 'report/' . $mob_data->slug;
         $response = $this->json('get', 'report/' . $mob_data->slug);
+
+        // print_r($response->original->getData());
 
         //Assert
         $response->assertStatus(200);
-        $response->assertViewHas("slug", $mob_data->slug);
-        $response->assertViewHas("name", $mob_data->name);
+        $response->assertViewHas("mob", function ($viewMob) use ($mob_data) {
+            return $mob_data->name === $viewMob->name;
+        });
+
 
     }
 }

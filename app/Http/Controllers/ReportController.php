@@ -9,9 +9,10 @@ class ReportController extends Controller
 {
     public function show($slug)
     {
-        $mob = Mob::where("slug", $slug)->firstOrFail()->toArray();
+        $mob = Mob::where("slug", $slug)->firstOrFail();
+        $details = json_decode($mob->storage);
 
-        return view('report', $mob);
+        return view('report',compact('mob', 'details'));
 
     }
 }

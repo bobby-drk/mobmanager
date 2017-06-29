@@ -16,6 +16,7 @@ $factory->define(\App\Models\User::class, function (Faker\Generator $faker) {
 $factory->define(\App\Models\Mob::class, function (Faker\Generator $faker) {
 
     $jsonObject = [
+        'featureName' => $faker->name,
         "participants" => [
             [
                 "name" => $faker->name,
