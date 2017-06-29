@@ -62,6 +62,7 @@
                     buttonType="yesNo">If you turn off long term storage, anything currently saved will be removed. Do you want to permanently delete your long term storage?</confirm-alert>
                 <confirm-alert v-if="alerts.mobNeedsName" @confirm="confirmMobName">You must have a mob name before you can use long term storage.</confirm-alert>
                 <p>MobBoss is not responsible for loss of data.  Data is secure only to the extent needed by the MobBoss applicaiton.  Store sensitive information at your own risk.</p>
+                <p v-if="save && slug">Report Page: <a :href="'/report/'+ slug"> /report/{{ slug }}</a></p>
             </div>
         </div>
         <div class='row'>
@@ -168,6 +169,7 @@
 
             </div>
         </div>
+
         <div class='row '>
             <div class="col-sm-12">
                 <button class="btn btn-default btn-sm pull-right" @click="setAdminDisplayOff">Close</button>
@@ -193,6 +195,7 @@
         computed: {
             ...mapState({
                 mobName: state => state.mobName,
+                slug: state => state.slug,
             }),
             save: {
                 get() { return this.$store.state.persist },
@@ -215,7 +218,7 @@
                 set(value) { this.setMobName(value) }
             },
             featureNameOption: {
-                get() { return this.$store.state.featureNameOption},
+                get() { return this.$store.state.featureNameOption },
                 set(value) {
                     this.$store.commit('setFeatureNameOption', value)
                     if (!value) {
@@ -224,7 +227,7 @@
                 }
             },
             featureName: {
-                get() { return this.$store.state.featureName},
+                get() { return this.$store.state.featureName },
                 set(value) { this.$store.commit('setFeatureName', value) }
             },
             timerDuration: {
