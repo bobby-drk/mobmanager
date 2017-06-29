@@ -21,14 +21,10 @@ class ReportTest extends TestCase
         //Act
         $response = $this->json('get', 'report/' . $mob_data->slug);
 
-        // print_r($response->original->getData());
-
         //Assert
         $response->assertStatus(200);
         $response->assertViewHas("mob", function ($viewMob) use ($mob_data) {
             return $mob_data->name === $viewMob->name;
         });
-
-
     }
 }
