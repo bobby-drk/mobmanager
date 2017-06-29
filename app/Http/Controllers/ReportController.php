@@ -11,7 +11,6 @@ class ReportController extends Controller
     {
         $mob = Mob::where("slug", $slug)->firstOrFail();
         $details = json_decode($mob->storage);
-
         return view('report',compact('mob', 'details'));
 
     }
